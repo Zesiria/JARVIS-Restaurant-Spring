@@ -1,20 +1,21 @@
 package ku.cs.restaurant.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
 public class Food {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "food_generator")
+    @SequenceGenerator(name="food_generator", sequenceName = "food_seq")
+    @Column(name = "id", updatable = false, nullable = false)
     private Integer id;
     private String name;
     private String type;
     private int quantity;
+    private double price;
 
     public Integer getId() {
         return id;
@@ -46,5 +47,13 @@ public class Food {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

@@ -1,13 +1,14 @@
 package ku.cs.restaurant.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Desk {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "desk_generator")
+    @SequenceGenerator(name="desk_generator", sequenceName = "desk_seq")
+    @Column(name = "id", updatable = false, nullable = false)
+
     private Integer id;
     private int size;
     private boolean status;
